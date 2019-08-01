@@ -12,7 +12,7 @@ este set realizaremos todas las pruebas que vendran.
 <...>
 ```
 
-**Elejir el primer segmento
+##Elejir el primer segmento
 
 En primera instancia podremos ver todos los segmentos disponibles que podemos elegir como primer segmento
 Notar que get_segments pasa una lista vacia indica que aun no se eligio ningun segmento
@@ -37,11 +37,11 @@ Luego comprobamos la cantidad de resultados obtenidos
 >> segments.size
 
 ```
-**Aplicar Filtros sobre los segmentos
+##Aplicar Filtros sobre los segmentos
 Ahora empezaremos a poner ciertas condiciones, y veremos como la cantidad de segmentos se reducen en base
 a los filtros elegidos
 
-**** Filtro segun cantidad de paradas (Stops)
+#### Filtro segun cantidad de paradas (Stops)
 
 Bien, ahora elegimos el siguiente segmento( veremos que la cantidad de segmentos disponibles disminuye)
 Para ir al siguiente segmento elegimos el sesgmento que queremos, en este caso elegimos el del resultado anterior
@@ -95,7 +95,7 @@ Podemos comprobar que disminuyeron los segmentos disponibles para elegir
 
 ```
 
-**Probemos Los Filtros
+##Probemos Los Filtros
 
 Sobre el segundo segmento probamos los filtros
 
