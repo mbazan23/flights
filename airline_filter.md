@@ -1,35 +1,29 @@
-.<!--
+<!--
 Load the necessary libraries
 >> require_relative 'response_json/filter_and_sort_functions_for_segments.rb'
 <...>
+
 -->
 
-Cargamos un set de initerarios desde el archivo 'flights.json', el cual se encuentra normalizado, con 
-este set realizaremos todas las pruebas que vendran.
+### Cargamos los segmentos
 
+Primero obtenemos los itnierarios de un Json normalizado, el cual contiene 54 segmentos totales en la
+primera columna.
 ```ruby
 >> data = JSON.parse(File.read('response_json/flights.json'))
-<...>
-```
-
-## Elejir el primer segmento
-
-En primera instancia podremos ver todos los segmentos disponibles que podemos elegir como primer segmento
-Notar que get_segments pasa una lista vacia indica que aun no se eligio ningun segmento
-```ruby
->> segments = get_segments(data, [])
-
+>> segments = get_segments(data)
+>> p segments.size
+54
 ```
 
 # Filtros por Aerolinea
 
-En este Json en particular, cada segmento tiene una unica Aerolinea asignada,
-por eso 28 + 7 + 19 = 54 que es el total. Pero si los segmentos tuviesen varias
-aerolineas, todas las aerolineas que esten contenidas y esten en la busqueda haran 
-que el segmento aparezca.
+En este Json tenemos 3 aerolineas  "American Airlines", "United"  y  "Delta".
+Empecemos a filtrar.
 
+### Filtrar segmentos que tengan vuelos de "American Airlines"
 
-Cantidad de segmentos de la aerolinea "American Airlines" :
+Cantidad de segmentos de la aerolinea "American Airlines"
 ```ruby
 >> p filter_segmets_by_airlines(data, segments, "American Airlines").size
 7
@@ -48,7 +42,9 @@ Segmentos de la aerolinea "American Airlines":
 {:zid=>"ZFS-WEB-AA2607-DFW-MSY-1555429560-L0AIZRN1-L", :from=>"Dallas", :to=>"New Orleans", :duration=>"PT1H28M", :departure_time=>"2019-04-16T10:46:00", :airlines=>["American Airlines"]}
 ```
 
-Cantidad de Vuelos de la aerolinea "United" :
+### Filtrar segmentos que tengan vuelos de "United"
+
+Cantidad de Vuelos de la aerolinea "United":
 ```ruby
 >> p filter_segmets_by_airlines(data, segments, "United").size
 28
@@ -88,6 +84,8 @@ Segmentos de la aerolinea "United":
 {:zid=>"ZFS-WEB-UA6194-DFW-IAH-1555447800-QAA07FLX-Q-UA297-IAH-MSY-1555457760-QAA07FLX-Q", :from=>"Dallas", :to=>"New Orleans", :duration=>"PT3H54M", :departure_time=>"2019-04-16T15:50:00", :airlines=>["United", "United"]}
 ```
 
+### Filtrar segmentos que tengan vuelos de "Delta"
+
 Cantidad de Vuelos de la aerolinea "Delta" :
 ```ruby
 >> p filter_segmets_by_airlines(data, segments, "Delta").size
@@ -117,3 +115,8 @@ Segmentos de la aerolinea "Delta":
 {:zid=>"ZFS-PUBLISHED-DL2055-DAL-ATL-1555458000-KA7NA0MA-K-DL2202-ATL-MSY-1555469760-KA7NA0MA-K", :from=>"Dallas", :to=>"New Orleans", :duration=>"PT4H50M", :departure_time=>"2019-04-16T18:40:00", :airlines=>["Delta", "Delta"]}
 {:zid=>"ZFS-PUBLISHED-DL1321-DFW-ATL-1555447800-KA7NA0MA-K-DL1393-ATL-MSY-1555458840-KA7NA0MA-K", :from=>"Dallas", :to=>"New Orleans", :duration=>"PT4H40M", :departure_time=>"2019-04-16T15:50:00", :airlines=>["Delta", "Delta"]}
 ```
+
+Nota :
+En este Json en particular, cada segmento tiene una unica Aerolinea asignada para todos sus vuelos.
+Pero si los segmentos tuviesen varias aerolineas, un mismo segmento puede aparecer en varios filtros
+de aerolineas distintas, siempre que el las contenga.
