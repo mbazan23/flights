@@ -7,7 +7,7 @@ Load the necessary libraries
 
 ## Cargamos los segmentos
 
-Primero obtenemos los itnierarios de un Json normalizado, el cual itinerarios multicities de 4 ciudades. Este Json contiene 9 segmentos totales en la primera columna.
+Primero obtenemos los itnierarios de un Json normalizado, el cual contiene itinerarios multicities de 4 ciudades. Este Json contiene 9 segmentos totales en la primera columna.
 ```ruby
 >> data = JSON.parse(File.read('response_json/multicity_4_cities.json'))['payload']
 >> first_segments =  get_segments(data)
@@ -33,9 +33,10 @@ Supongamos que elegimos este segmento, por lo tanto lo que nos interesa es su id
 
 ```
 
-## Avanzar al segundo segmentos
-Supongamos que elejimos el primer segmento, entonces ahora, tedremos que ver los segundos segmentos disponibles a partir de la eleccion que hicimos. Diversas elecciones ocacionan diversas alternativas en el segmento siguiente a elegir.
-Busquemos nuestros posibles segundos segmentos
+## Avanzar al segundo segmento
+Supongamos que elegimos el primer segmento, entonces ahora, tedremos que ver los segundos segmentos disponibles a partir de la eleccion que hicimos. Diversas elecciones ocacionan diversos posibles resultados
+de segundos segmentos.
+Busquemos nuestros posibles segundos segmentos, a partir de la primera eleccion.
 ```ruby
 >> second_segments = get_segments(data, [first_choice_id])  
 
@@ -48,7 +49,7 @@ Vemos que las opciones son nuevamente 9.
 >> p second_segments.size
 9
 ```
-Veamos cuales son estos 9 nuevos segmentos disponibles habiendo elegido anteriormente el segmento 
+Veamos cuales son estos 9 nuevos segmentos disponibles. 
 
 ```ruby
 >> second_segments.each {|segments| pp segments}
@@ -125,7 +126,7 @@ Elegimos el primero de esta lista como segundo segmento
 
 ### Avanzar al tercer segmento
 Como hicimos con el segundo segmento, queremos visualizar los terceros segmentos disponibles, recordando
-poner como condicion los dos segmentos previamente seleccionados. En este caso seleccionaremos el segundo segmento que tiene el codigo "ZFS-WEB-AA2257-MSY-DFW-1556669460-NVAIUSM1-N"
+poner como condicion los dos segmentos previamente seleccionados. 
 ```ruby
 >> third_segments = get_segments(data, [first_choice_id, second_choice_id])   
 
