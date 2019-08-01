@@ -12,7 +12,7 @@ este set realizaremos todas las pruebas que vendran.
 <...>
 ```
 
-##Elejir el primer segmento
+## Elejir el primer segmento
 
 En primera instancia podremos ver todos los segmentos disponibles que podemos elegir como primer segmento
 Notar que get_segments pasa una lista vacia indica que aun no se eligio ningun segmento
@@ -37,7 +37,7 @@ Luego comprobamos la cantidad de resultados obtenidos
 >> segments.size
 
 ```
-##Aplicar Filtros sobre los segmentos
+## Aplicar Filtros sobre los segmentos
 Ahora empezaremos a poner ciertas condiciones, y veremos como la cantidad de segmentos se reducen en base
 a los filtros elegidos
 
